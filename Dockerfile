@@ -11,10 +11,10 @@ RUN apt-get update -y && \
     apt-get install -y cmake g++-10 && \
     update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 60 --slave /usr/bin/g++ g++ /usr/bin/g++-10
 
-# Add user for SSH access (change 'csc2024' to your desired password)
-RUN useradd -m csc2024 && \
-    echo "csc2024:csc2024" | chpasswd && \
-    echo "root:csc2024" | chpasswd && \
+# Add user for SSH access (change 'demo' to your desired password)
+RUN useradd -m demo && \
+    echo "demo:demo" | chpasswd && \
+    echo "root:demo" | chpasswd && \
     sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 
 # Create SSH directory
@@ -24,10 +24,10 @@ RUN mkdir /var/run/sshd
 EXPOSE 22
 
 # Copy the entire project directory
-COPY csc2024-project1 /home/csc2024/csc2024-project1
+COPY esp-hijack /home/demo/esp-hijack
 
 # Set the working directory
-WORKDIR /home/csc2024/csc2024-project1
+WORKDIR /home/demo/esp-hijack
 
 # Give execution permission to scripts, converting files with (CRLF) to (LF)
 RUN chmod +x scripts/config.sh && \

@@ -1,12 +1,12 @@
 version: '3'
 services:
   h1:
-    image: csc2024-project1
+    image: esp-hijack
     container_name: client
     privileged: true
     build:
       context: .
-      dockerfile: csc2024-project1.Dockerfile
+      dockerfile: Dockerfile
     cap_add:
       - NET_ADMIN
       - NET_BROADCAST
@@ -24,12 +24,12 @@ services:
       - "4444:22"
 
   h2:
-    image: csc2024-project1
+    image: esp-hijack
     container_name: server
     privileged: true
     build:
       context: .
-      dockerfile: csc2024-project1.Dockerfile
+      dockerfile: Dockerfile
     cap_add:
       - NET_ADMIN
       - NET_BROADCAST
